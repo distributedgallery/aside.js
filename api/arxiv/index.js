@@ -1,6 +1,7 @@
 export default function handler(request, response) {
   console.log(request)
-  response.status(200).setHeader('Cache-Control', 'no-cache').json({
-    nbOfPublications: 9
+  response.setHeader('Cache-Control', 'no-cache');
+  response.status(200).json({
+    nbOfPublications: 11
   });
 }
