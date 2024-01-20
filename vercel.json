@@ -3,6 +3,10 @@
     {
       "path": "/api/aisentiment/update",
       "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/aisentiment/update",
+      "schedule": "*/10 * * * *"
     }
   ]
 }
