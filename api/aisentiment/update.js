@@ -1,7 +1,6 @@
 import { kv } from '@vercel/kv';
 
 function isAuthorized(request) {
-  console.log(request.headers);
   return request.headers.authorization === `Bearer ${process.env.CRON_SECRET}`;
 }
 
