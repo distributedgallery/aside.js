@@ -1,11 +1,15 @@
 import { kv } from '@vercel/kv';
 
-// if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
-//   return res.status(401).end('Unauthorized');
-// }
+function isAuthorized(request) {
+  return request.headers.Authorization === `Bearer ${process.env.CRON_SECRET}`;
+}
 
 export default async function handler(request, response) {
   try {
+    if (!isAuthorized(request)) {
+      return response.status(401).json({ error: 'Unauthorized request' });
+    }
+
     const timestamp = Date.now();
     const sentiment = Math.random();
     await kv.zadd(
