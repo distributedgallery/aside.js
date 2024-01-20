@@ -24,8 +24,6 @@ async function count(hashtags) {
     },
   });
 
-  console.log(response.body);
-
   if (response.body) { return response.body.meta.total_tweet_count; }
 
   throw new Error('Unsuccessful Twitter request');
@@ -55,7 +53,6 @@ export default async function handler(request, response) {
     );
     return response.status(200).json({ timestamp, sentiment });
   } catch (error) {
-    console.log(error);
     return response.status(500).json({ error: error.message });
   }
 }
