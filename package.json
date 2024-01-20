@@ -4,9 +4,8 @@
   "description": "API serverless functions for aside.eth oracles",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test",
-    "source:env": "vercel env pull .env.development.local",
-    "sentiments:all": "set -a && source .env.development.local && set +a &&  node scripts/sentiments/all.mjs",
+    "env:pull": "vercel env pull .env.development.local",
+    "sentiments:all": "set -a && source .env.development.local && set +a && node scripts/sentiments/all.mjs",
     "sentiments:current": "set -a && source .env.development.local && set +a && node scripts/sentiments/current.mjs"
   },
   "author": "",
