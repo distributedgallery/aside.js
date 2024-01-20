@@ -1,12 +1,8 @@
 {
   "crons": [
     {
-      "path": "/api/aisentiment/update",
+      "path": "/api/aisentiment",
       "schedule": "*/5 * * * *"
-    },
-    {
-      "path": "/api/aisentiment/update",
-      "schedule": "*/10 * * * *"
     }
   ]
 }
