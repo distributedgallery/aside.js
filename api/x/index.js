@@ -1,14 +1,29 @@
-// Search for Tweets within the past seven days
+// search for Tweets within the past seven days
 // https://developer.twitter.com/en/docs/twitter-api/tweets/search/quick-start/recent-search
 
 const needle = require('needle');
 
+
+
 // The code below sets the bearer token from your environment variables
 // To set environment variables on macOS or Linux, run the export command below from the terminal:
 // export BEARER_TOKEN='YOUR-TOKEN'
-const token = "AAAAAAAAAAAAAAAAAAAAAOdorQEAAAAAf0RObsAiXPbZmOoNQd8%2FxV8r4m8%3DkJvhBodBuY1vyHVnbZH9VlEz2Pwlcvh8hzX205tTjvbgXaD4N2";
+const BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAOdorQEAAAAAf0RObsAiXPbZmOoNQd8%2FxV8r4m8%3DkJvhBodBuY1vyHVnbZH9VlEz2Pwlcvh8hzX205tTjvbgXaD4N2";
+const ENDPOINT = "https://api.twitter.com/2/tweets/counts/recent";
 
-const endpointUrl = "https://api.twitter.com/2/tweets/counts/recent";
+const PROS = ['#aiforgood', '#ai4good'];
+const CONS = ['#aiforbad', '#ai4bad'];
+
+
+function _queryPro() {
+    let _query = '';
+
+    for (let i = 0; i < PROS.length; i++) {
+        if (i > 0)  _query += ' OR ';
+        _query += PROS[i];
+    }
+    return _query
+}
 
 async function getRequest() {
 
@@ -19,13 +34,18 @@ async function getRequest() {
         'granularity': 'day'
     }
 
-    const res = await needle('get', endpointUrl, params, {
+    for (const element of array1) {
+        console.log(element);
+      }
+
+    const res = await needle('get', ENDPOINT, params, {
         headers: {
             "User-Agent": "v2RecentTweetCountsJS",
-            "authorization": `Bearer ${token}`
+            "authorization": `Bearer ${BEARER_TOKEN}`
         }
     })
 
+    // .meta.total_tweet_count
     if (res.body) {
         return res.body;
     } else {
@@ -37,10 +57,12 @@ async function getRequest() {
 
     try {
         // Make request
-        const response = await getRequest();
-        console.dir(response, {
-            depth: null
-        });
+        // const response = await getRequest();
+        // console.dir(response, {
+        //     depth: null
+        // });
+
+        console.log(_queryPro());
 
     } catch (e) {
         console.log(e);
