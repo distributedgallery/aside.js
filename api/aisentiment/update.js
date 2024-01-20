@@ -24,6 +24,8 @@ async function count(hashtags) {
     },
   });
 
+  console.log(response.body);
+
   if (response.body) { return response.body.meta.total_tweet_count; }
 
   throw new Error('Unsuccessful Twitter request');
