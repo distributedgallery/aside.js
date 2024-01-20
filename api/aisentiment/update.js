@@ -8,7 +8,6 @@ export default async function handler(request, response) {
       'sentiments',
       { score: timestamp, member: sentiment },
     );
-    throw new Error('regrg');
     return response.status(200).json({ timestamp, sentiment });
   } catch (error) {
     return response.status(500).json({ error: error.message });
