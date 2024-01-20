@@ -1,5 +1,9 @@
 import { kv } from '@vercel/kv';
 
+// if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+//   return res.status(401).end('Unauthorized');
+// }
+
 export default async function handler(request, response) {
   try {
     const timestamp = Date.now();
